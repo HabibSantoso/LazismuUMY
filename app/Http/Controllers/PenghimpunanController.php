@@ -134,7 +134,7 @@ class PenghimpunanController extends Controller
             // 'title' => $request->title,
         ]);
 
-        return redirect()->route('penghimpunan.index')->with('success', 'Penghimpunan created successfully!');
+        return redirect()->route('penghimpunan.index')->with('success', 'Penghimpunan updated successfully!');
     }
 
     /**
