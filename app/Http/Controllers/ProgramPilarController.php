@@ -28,7 +28,9 @@ class ProgramPilarController extends Controller
      */
     public function create()
     {
-        return view('programpilar.create');
+        $pilars = Pilar::query()->get();
+
+        return view('programpilar.create', compact('pilars'));
     }
 
     /**
@@ -36,7 +38,18 @@ class ProgramPilarController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|max:35',
+            'pilar_id' => 'required|exists:pilars,id'
+        ]);
+        //dd($request);
+
+        ProgramPilar::create([
+            'name' => $request->name,
+            'pilar_id' =>$request->pilar_id,
+        ]);
+
+        return redirect()->route('programpilar.index')->with('success', 'Program pilar created successfully!');
     }
 
     /**
@@ -50,24 +63,44 @@ class ProgramPilarController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(ProgramPilar $programPilar)
+    public function edit(ProgramPilar $programpilar)
     {
-        //
+        $pilars = Pilar::query()->get();
+
+        //dd($programPilar);
+        return view('programpilar.edit', compact('programpilar', 'pilars'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, ProgramPilar $programPilar)
+    public function update(Request $request, ProgramPilar $programpilar)
     {
-        //
+        $request->validate([
+            'name' => 'required|max:35',
+            'pilar_id' => 'required|exists:pilars,id'
+
+        ]);
+        //dd($request);
+
+        $programpilar->update([
+            'name' =>$request->name,
+            'pilar_id' =>$request->pilar_id,
+
+        ]);
+
+        return redirect()->route('programpilar.index')->with('success', 'Program Pilar created successfully!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(ProgramPilar $programPilar)
+    public function destroy(ProgramPilar $programpilar)
     {
-        //
+        $programpilar->delete();
+
+        return redirect()
+           ->route('programpilar.index')
+           ->with('success', 'Program Pilar deleted successfully!');
     }
 }

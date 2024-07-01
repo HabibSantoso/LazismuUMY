@@ -8,6 +8,12 @@
                 <th scope="col" class="px-6 py-3 lg:table-cell">
                     {{ __('Name') }}
                 </th>
+                <th scope="col" class="px-6 py-3 lg:table-cell">
+                    {{ __('Kabupaten') }}
+                </th>
+                <th scope="col" class="px-6 py-3 lg:table-cell">
+                    {{ __('Provinsi') }}
+                </th>
                 <th scope="col" class="py-3 pl-6 pr-2 lg:pr-4">
                     {{ __('Option') }}
                 </th>
@@ -33,6 +39,20 @@
                                 {{ $lokasi->name }}
                             </p>
 
+                        </div>
+                    </td>
+                    <td class="px-6 py-4 lg:table-cell">
+                        <div class="flex">
+                            <p>
+                                {{ $lokasi->kabupaten->name }}
+                            </p>
+                        </div>
+                    </td>
+                    <td class="px-6 py-4 lg:table-cell">
+                        <div class="flex">
+                            <p>
+                                {{ $lokasi->provinsi->name }}
+                            </p>
                         </div>
                     </td>
                     <td class="py-4 pl-6 pr-2 lg:pr-4">
