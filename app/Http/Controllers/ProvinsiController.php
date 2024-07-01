@@ -23,6 +23,8 @@ class ProvinsiController extends Controller
      */
     public function create()
     {
+        $provinsi = Provinsi::query()->get();
+
         return view('provinsi.create');
     }
 
@@ -31,7 +33,17 @@ class ProvinsiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|max:40',
+
+        ]);
+        //dd($request);
+
+        Provinsi::create([
+            'name' => $request->name,
+        ]);
+
+        return redirect()->route('provinsi.index')->with('success', 'Provinsi created successfully!');
     }
 
     /**
@@ -47,7 +59,8 @@ class ProvinsiController extends Controller
      */
     public function edit(Provinsi $provinsi)
     {
-        //
+        //dd($provinsi);
+        return view('provinsi.edit', compact('provinsi'));
     }
 
     /**
@@ -55,7 +68,18 @@ class ProvinsiController extends Controller
      */
     public function update(Request $request, Provinsi $provinsi)
     {
-        //
+        $request->validate([
+            'name' => 'required|max:40'
+
+        ]);
+        //dd($request);
+
+        $provinsi->update([
+            'name' =>$request->name,
+
+        ]);
+
+        return redirect()->route('provinsi.index')->with('success', 'Provinsi created successfully!');
     }
 
     /**
@@ -63,6 +87,10 @@ class ProvinsiController extends Controller
      */
     public function destroy(Provinsi $provinsi)
     {
-        //
+        $provinsi->delete();
+
+        return redirect()
+           ->route('provinsi.index')
+           ->with('success', 'Provinsi deleted successfully!');
     }
 }
