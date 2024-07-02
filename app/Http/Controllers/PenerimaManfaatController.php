@@ -81,7 +81,7 @@ class PenerimaManfaatController extends Controller
             'female_count' => $request->wanita,
         ]);
 
-        return redirect()->route('penerimamanfaat.index')->with('success', 'Penerima Manfaat created successfully!');
+        return redirect()->route('penerimamanfaat.index')->with('success', 'Penerima Manfaat edited successfully!');
     }
 
     /**

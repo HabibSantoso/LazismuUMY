@@ -23,6 +23,8 @@ class TahunController extends Controller
      */
     public function create()
     {
+        $tahun = Tahun::query()->get();
+
         return view('tahun.create');
     }
 
@@ -31,7 +33,17 @@ class TahunController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'tahun' => 'required|max:4',
+
+        ]);
+        //dd($request);
+
+        Tahun::create([
+            'name' => $request->tahun,
+        ]);
+
+        return redirect()->route('tahun.index')->with('success', 'Tahun created successfully!');
     }
 
     /**
@@ -47,7 +59,8 @@ class TahunController extends Controller
      */
     public function edit(Tahun $tahun)
     {
-        //
+        //dd($tahun);
+        return view('tahun.edit', compact('tahun'));
     }
 
     /**
@@ -55,7 +68,18 @@ class TahunController extends Controller
      */
     public function update(Request $request, Tahun $tahun)
     {
-        //
+        $request->validate([
+            'name' => 'required|max:4'
+
+        ]);
+        //dd($request);
+
+        $tahun->update([
+            'name' =>$request->name,
+
+        ]);
+
+        return redirect()->route('tahun.index')->with('success', 'Tahun edited successfully!');
     }
 
     /**
@@ -63,6 +87,10 @@ class TahunController extends Controller
      */
     public function destroy(Tahun $tahun)
     {
-        //
+        $tahun->delete();
+
+        return redirect()
+           ->route('tahun.index')
+           ->with('success', 'Tahun deleted successfully!');
     }
 }

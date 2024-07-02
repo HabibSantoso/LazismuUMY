@@ -154,7 +154,7 @@ class PenyaluranController extends Controller
             // 'title' => $request->title,
         ]);
 
-        return redirect()->route('penyaluran.index')->with('success', 'Penyaluran created successfully!');
+        return redirect()->route('penyaluran.index')->with('success', 'Penyaluran edited successfully!');
     }
 
     /**

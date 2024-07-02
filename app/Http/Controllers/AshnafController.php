@@ -80,7 +80,7 @@ class AshnafController extends Controller
 
         ]);
 
-        return redirect()->route('ashnaf.index')->with('success', 'Ashnaf created successfully!');
+        return redirect()->route('ashnaf.index')->with('success', 'Ashnaf edited successfully!');
     }
 
     /**

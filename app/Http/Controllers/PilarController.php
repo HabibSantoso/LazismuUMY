@@ -83,7 +83,7 @@ class PilarController extends Controller
 
         ]);
 
-        return redirect()->route('pilar.index')->with('success', 'Pilar created successfully!');
+        return redirect()->route('pilar.index')->with('success', 'Pilar edited successfully!');
     }
 
     /**
