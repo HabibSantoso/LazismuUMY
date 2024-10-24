@@ -118,8 +118,8 @@ class PenyaluransExport implements FromQuery, ShouldAutoSize, WithColumnFormatti
             $penyaluran->lembaga_count,
             $penyaluran->male_count,
             $penyaluran->female_count,
-            // $penyaluran->lokasi->provinsi->name ?? null,
-            // $penyaluran->lokasi->kabupaten->name ?? null,
+            $penyaluran->kabupaten->provinsi->name ?? null,
+            $penyaluran->kabupaten->name ?? null,
             $penyaluran->tahun->name ?? null,
             $penyaluran->uraian,
         ];
